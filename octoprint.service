@@ -1,0 +1,15 @@
+[Unit]
+Description=OctoPrint Server
+Requires=docker.service
+After=docker.service dbus.socket
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5s
+ExecStartPre=-/octoprint/octoprint-service stop
+ExecStart=/octoprint/octoprint-service start
+ExecStop=-/octoprint/octoprint-service stop
+
+[Install]
+WantedBy=multi-user.target

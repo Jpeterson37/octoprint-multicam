@@ -1,0 +1,16 @@
+#!/bin/bash
+
+case $1 in
+
+  octoprint-stop)
+    cd /octoprint && docker-compose down
+    ;;
+
+  octoprint-start)
+    cd /octoprint && docker-compose up -d
+    ;;
+
+  *)
+    echo -n "unknown"
+    ;;
+esac
