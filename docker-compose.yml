@@ -63,3 +63,7 @@ services:
 
 volumes:
   octoprint:
+    driver_opts:
+      type: "nfs"
+      o: "addr=192.169.0.100,nolock,soft,rw"
+      device: ":/docker/octoprint"

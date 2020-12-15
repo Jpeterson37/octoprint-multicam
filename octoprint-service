@@ -2,11 +2,11 @@
 
 case $1 in
 
-  octoprint-stop)
+  stop)
     cd /octoprint && docker-compose down
     ;;
 
-  octoprint-start)
+  start)
     cd /octoprint && docker-compose up -d
     ;;
 
