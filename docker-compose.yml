@@ -6,41 +6,41 @@ services:
     restart: unless-stopped
     ports:
       - 80:80
-    # devices:
-    #  - /dev/ttyACM0:/dev/ttyACM0
-    #  - /dev/video0:/dev/video0
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
+      - /dev/video0:/dev/video0
     volumes:
-     - octoprint:/octoprint
+      - octoprint:/octoprint
     # uncomment the lines below to ensure camera streaming is enabled when
     # you add a video device
-    #environment:
-    #  - ENABLE_MJPG_STREAMER=true
+    environment:
+      - ENABLE_MJPG_STREAMER=true
   
-  streamer1:
-    build: .
-    ports:
-      - 8001:8080
-    devices:
-      - /dev/video0:/dev/video0
-    environment:
-      - MJPG_RES=640x480
-      - MJPG_FPS=25
-      - MJPG_USER=admin
-      - MJPG_PASS=adm1n
-    restart: always
+ # streamer1:
+ #   build: .
+ #   ports:
+ #     - 8001:8080
+ #   devices:
+ #     - /dev/video1:/dev/video0
+ #   environment:
+ #     - MJPG_RES=640x480
+ #     - MJPG_FPS=25
+ #     - MJPG_USER=admin
+ #     - MJPG_PASS=adm1n
+ #   restart: always
 
-  streamer2:
-    build: .
-    ports:
-      - 8002:8080
-    devices:
-      - /dev/video1:/dev/video0
-    environment:
-      - MJPG_RES=640x480
-      - MJPG_FPS=25
-      - MJPG_USER=admin
-      - MJPG_PASS=adm1n
-    restart: always
+ # streamer2:
+ #   build: .
+ #   ports:
+ #     - 8002:8080
+ #   devices:
+ #     - /dev/video1:/dev/video0
+ #   environment:
+ #     - MJPG_RES=640x480
+ #     - MJPG_FPS=25
+ #     - MJPG_USER=admin
+ #     - MJPG_PASS=adm1n
+ #   restart: always
   
   ####
   # uncomment if you wish to edit the configuration files of octoprint
@@ -63,7 +63,3 @@ services:
 
 volumes:
   octoprint:
-    driver_opts:
-      type: "nfs"
-      o: "addr=192.169.0.100,nolock,soft,rw"
-      device: ":/docker/octoprint"

@@ -1,13 +1,14 @@
 #!/bin/bash
 
+currentdir=`pwd`
 case $1 in
 
   stop)
-    cd /octoprint && docker-compose down
+    cd $currentdir && docker-compose down
     ;;
 
   start)
-    cd /octoprint && docker-compose up -d
+    cd $currentdir && docker-compose up -d
     ;;
 
   *)
